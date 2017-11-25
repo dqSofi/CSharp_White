@@ -5,20 +5,17 @@ using System.Collections.Generic;
 namespace AddressbookWhite
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupRemovalTests : TestBase
     {
         [Test]
-        public void GroupCreationTest()
+        public void GroupRemovalTest()
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
-            GroupData newGroup = new GroupData()
-            {
-                Name = "White"
-            };
-            app.Groups.Add(newGroup);
+            GroupData toBeRemoved = oldGroups[0];
+            app.Groups.Remove(toBeRemoved);
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
-            oldGroups.Add(newGroup);
+            oldGroups.Remove(toBeRemoved);
             oldGroups.Sort();
             newGroups.Sort();
 

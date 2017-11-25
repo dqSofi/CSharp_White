@@ -59,5 +59,18 @@ namespace AddressbookWhite
             manager.MainWindow.Get<Button>("groupButton").Click();
             return manager.MainWindow.ModalWindow(GROUPWINTITLE);
         }
+
+        public void Remove(GroupData toBeRemoved)
+        {
+            Window dialog = OpenGroupsDialog();
+            Tree tree = dialog.Get<Tree>("uxAddressTreeView");
+            TreeNode root = tree.Nodes[0];
+            root.Nodes[0].Select();
+            dialog.Get<Button>("uxDeleteAddressButton").Click();
+            Window deleteGroupWindow = dialog.ModalWindow("Delete group");
+            deleteGroupWindow.Get<RadioButton>("uxDeleteAllRadioButton").Click();
+            deleteGroupWindow.Get<Button>("uxOKAddressButton").Click();
+            CloseGroupsDialog(dialog);
+        }
     }
 }
